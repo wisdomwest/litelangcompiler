@@ -1,2 +1,2 @@
 #!/usr/bin/env bash 
-gcc main.c -o man -Wall -Wextra
+gcc main.c -o main -Wall -Wextra

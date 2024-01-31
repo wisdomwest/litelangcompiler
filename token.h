@@ -1,5 +1,5 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef TOKEN_H
+#define TOKEN_H
 
 typedef enum
 {
@@ -31,7 +31,7 @@ typedef struct
 typedef struct
 {
 	TypeLiteral type;
-	char *value;
+	int value;
 } TokenLiteral;
 
 #endif
