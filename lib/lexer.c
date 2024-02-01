@@ -1,5 +1,6 @@
 #include "../include/lexer.h"
 
+
 /* lexer scanning - scanner */
 
 
@@ -21,7 +22,7 @@ static int chr_position(char *str, int chr)
   * next - get next character from file
   * Return: next character
   */
-static int next(void)
+static int next(int Line, int Putback, FILE *Infile)
 {
 	int c;
 
@@ -46,7 +47,7 @@ static int next(void)
   * @c: char
   * Return: void
   */
-static void putback(int c)
+static void putback(int c, int Putback)
 {
 	Putback = c;
 }
@@ -55,14 +56,14 @@ static void putback(int c)
   * skip - skip input we dont want to deal with
   * Return: next character
   */
-static int skip(void)
+static int skip(int Line, int Putback, FILE *Infile)
 {
 	int c;
 
-	c = next();
+	c = next(Line, Putback, Infile);
 	while (' ' == c || '\t' == c || '\n' == c || '\r' == c || '\f' == c)
 	{
-		c = next();
+		c = next(Line, Putback, Infile);
 	}
 
 	return (c);
@@ -73,7 +74,7 @@ static int skip(void)
   * @c: character
   * Return: value
   */
-static int scanint(int c)
+static int scanint(int c, int Line, int Putback, FILE *Infile)
 {
 	int pos;
 	int value;
@@ -84,11 +85,11 @@ static int scanint(int c)
 	while (pos >= 0)
 	{
 		value = value * 10 + pos;
-		c = next();
+		c = next(Line, Putback, Infile);
 	}
 
 	/* non-int we put back */
-	putback(c);
+	putback(c, Putback);
 	return (value);
 }
 
@@ -97,12 +98,12 @@ static int scanint(int c)
   * @t: tokens
   * Return: 1 if token valid, 0 if no tokens left
   */
-int lexer(struct token *t)
+int lexer(struct token *t, int Line, int Putback, FILE *Infile)
 {
 	int c;
 
 	/* skip unwanted */
-	c = skip();
+	c = skip(Line, Putback, Infile);
 
 	/* get token by input char c */
 	switch (c)
@@ -125,7 +126,7 @@ int lexer(struct token *t)
 			/* if digit scan int literal */
 			if (isdigit(c))
 			{
-				t->intvalue = scanint(c);
+				t->intvalue = scanint(c, Line, Putback, Infile);
 				t->token = T_INTLIT;
 				break;
 			}

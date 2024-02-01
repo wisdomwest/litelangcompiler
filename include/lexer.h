@@ -1,5 +1,6 @@
-#ifndef _LEXER_H_
-#define _LEXER_H_
+#ifndef LEXER_H_
+#define LEXER_H_
+
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -7,10 +8,6 @@
 #include <ctype.h>
 #include <errno.h>
 
-/* Global variables */
-extern int Line;
-extern int Putback;
-extern FILE *Infile;
 
 /* Structure and enum definitions */
 
@@ -45,5 +42,6 @@ struct token
 };
 
 /* Function prototypes for all compiler files */
-int lexer(struct token *t);
+int lexer(struct token *t, int Line, int Putback, FILE *Infile);
+
 #endif
