@@ -1,30 +1,44 @@
-#include "include/lexer.h"
+#include "defs.h"
+#define extern_
+#include "data.h"
+#undef extern_
+#include "decl.h"
+#include <errno.h>
 
+/* Compiler setup and top-level execution */
 
-static void init(int Line, int Putback)
+/**
+ * init - int global vars
+ * Return: void
+ */
+static void init(void)
 {
 	Line = 1;
 	Putback = '\n';
 }
 
-
-/* Print out a usage if started incorrectly */
+/**
+ * usage - usage for compiler
+ * @prog: command
+ * Return: void
+*/
 static void usage(char *prog)
 {
 	fprintf(stderr, "Usage: %s infile\n", prog);
 	exit(1);
 }
 
-/* List of printable tokens */
 char *tokstr[] = { "+", "-", "*", "/", "intlit" };
 
-// Loop scanning in all the tokens in the input file.
-// Print out details of each token found.
-static void scanfile(int Line, int Putback, FILE *Infile)
+/**
+ * scanfile - scan a file get tokens
+ * Return: void
+*/
+static void scanfile(void)
 {
 	struct token T;
 
-	while (lexer(&T, Line, Putback, Infile))
+	while (lexer(&T))
 	{
 		printf("Token %s", tokstr[T.token]);
 		if (T.token == T_INTLIT)
@@ -33,26 +47,27 @@ static void scanfile(int Line, int Putback, FILE *Infile)
 	}
 }
 
-// Main program: check arguments and print a usage
-// if we don't have an argument. Open up the input
-// file and call scanfile() to scan the tokens in it.
-void main(int argc, char *argv[])
+/**
+ * main - entry point
+ * @argc: number of arguments
+ * @argv: command line arguments
+ * Return: 0 on success, -1 on failure
+*/
+int main(int argc, char *argv[])
 {
-	int Line;
-	int Putback;
-	FILE *Infile;
+	Infile =  fopen(argv[1], "r");
 
 	if (argc != 2)
 		usage(argv[0]);
 
-	init(Line, Putback);
+	init();
 
-	if ((Infile = fopen(argv[1], "r")) == NULL)
+	if (Infile == NULL)
 	{
 		fprintf(stderr, "Unable to open %s: %s\n", argv[1], strerror(errno));
 		exit(1);
 	}
 
-	scanfile(Line, Putback, Infile);
+	scanfile();
 	exit(0);
 }

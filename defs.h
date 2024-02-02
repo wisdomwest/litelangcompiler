@@ -1,12 +1,10 @@
-#ifndef LEXER_H_
-#define LEXER_H_
-
+#ifndef DEFS_H_
+#define DEFS_H_
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-#include <errno.h>
 
 
 /* Structure and enum definitions */
@@ -40,8 +38,5 @@ struct token
 	int token;
 	int intvalue;
 };
-
-/* Function prototypes for all compiler files */
-int lexer(struct token *t, int Line, int Putback, FILE *Infile);
 
 #endif

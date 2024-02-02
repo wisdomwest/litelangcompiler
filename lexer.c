@@ -1,8 +1,8 @@
-#include "../include/lexer.h"
-
+#include "defs.h"
+#include "data.h"
+#include "decl.h"
 
 /* lexer scanning - scanner */
-
 
 /**
   * chr_position - get position of char in string
@@ -12,17 +12,17 @@
   */
 static int chr_position(char *str, int chr)
 {
-	char *pos;
+	char *p;
 
-	pos = strchr(str, chr);
-	return (pos ? pos - str : -1);
+	p = strchr(str, chr);
+	return (p ? p - str : -1);
 }
 
 /**
   * next - get next character from file
   * Return: next character
   */
-static int next(int Line, int Putback, FILE *Infile)
+static int next(void)
 {
 	int c;
 
@@ -33,7 +33,6 @@ static int next(int Line, int Putback, FILE *Infile)
 		Putback = 0;
 		return (c);
 	}
-
 	/* read from input file gvar */
 	c = fgetc(Infile);
 	/* increment gvar line count */
@@ -47,7 +46,7 @@ static int next(int Line, int Putback, FILE *Infile)
   * @c: char
   * Return: void
   */
-static void putback(int c, int Putback)
+static void putback(int c)
 {
 	Putback = c;
 }
@@ -56,16 +55,15 @@ static void putback(int c, int Putback)
   * skip - skip input we dont want to deal with
   * Return: next character
   */
-static int skip(int Line, int Putback, FILE *Infile)
+static int skip(void)
 {
 	int c;
 
-	c = next(Line, Putback, Infile);
+	c = next();
 	while (' ' == c || '\t' == c || '\n' == c || '\r' == c || '\f' == c)
 	{
-		c = next(Line, Putback, Infile);
+		c = next();
 	}
-
 	return (c);
 }
 
@@ -74,22 +72,17 @@ static int skip(int Line, int Putback, FILE *Infile)
   * @c: character
   * Return: value
   */
-static int scanint(int c, int Line, int Putback, FILE *Infile)
+static int scanint(int c)
 {
-	int pos;
-	int value;
+	int k, value = 0;
 
-	pos = chr_position("0123456789", c);
-	value = 0;
-
-	while (pos >= 0)
+	while ((k = chr_position("0123456789", c)) >= 0)
 	{
-		value = value * 10 + pos;
-		c = next(Line, Putback, Infile);
+		value = value * 10 + k;
+		c = next();
 	}
-
 	/* non-int we put back */
-	putback(c, Putback);
+	putback(c);
 	return (value);
 }
 
@@ -98,12 +91,12 @@ static int scanint(int c, int Line, int Putback, FILE *Infile)
   * @t: tokens
   * Return: 1 if token valid, 0 if no tokens left
   */
-int lexer(struct token *t, int Line, int Putback, FILE *Infile)
+int lexer(struct token *t)
 {
 	int c;
 
 	/* skip unwanted */
-	c = skip(Line, Putback, Infile);
+	c = skip();
 
 	/* get token by input char c */
 	switch (c)
@@ -126,7 +119,7 @@ int lexer(struct token *t, int Line, int Putback, FILE *Infile)
 			/* if digit scan int literal */
 			if (isdigit(c))
 			{
-				t->intvalue = scanint(c, Line, Putback, Infile);
+				t->intvalue = scanint(c);
 				t->token = T_INTLIT;
 				break;
 			}
@@ -134,7 +127,6 @@ int lexer(struct token *t, int Line, int Putback, FILE *Infile)
 			printf("Unrecognised character %c on line %d\n", c, Line);
 			exit(1);
 	}
-
 	/* token found */
 	return (1);
 }
