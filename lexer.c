@@ -1,6 +1,6 @@
-#include "defs.h"
-#include "data.h"
-#include "decl.h"
+#include "include/defs.h"
+#include "include/data.h"
+#include "include/decl.h"
 
 /* lexer scanning - scanner */
 

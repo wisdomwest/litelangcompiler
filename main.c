@@ -1,8 +1,8 @@
-#include "defs.h"
+#include "include/defs.h"
 #define extern_
-#include "data.h"
+#include "include/data.h"
 #undef extern_
-#include "decl.h"
+#include "include/decl.h"
 #include <errno.h>
 
 /* Compiler setup and top-level execution */
