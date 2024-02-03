@@ -28,7 +28,7 @@ static void usage(char *prog)
 	exit(1);
 }
 
-char *tokstr[] = { "+", "-", "*", "/", "intlit" };
+/*char *tokstr[] = { "+", "-", "*", "/", "intlit" };*/
 
 /**
  * scanfile - scan a file get tokens
@@ -36,6 +36,7 @@ char *tokstr[] = { "+", "-", "*", "/", "intlit" };
 */
 static void scanfile(void)
 {
+	char *tokstr[] = { "+", "-", "*", "/", "intlit" };
 	struct token T;
 
 	while (lexer(&T))

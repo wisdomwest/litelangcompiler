@@ -39,4 +39,40 @@ struct token
 	int intvalue;
 };
 
+/* Abstract Syntax Tree */
+
+/**
+  * enum a_tokens - abstract syntax tree tokens
+  * @A_PLUS: token plus
+  * @A_MINUS: token minus
+  * @A_STAR: token multiply
+  * @A_SLASH: token divide
+  * @A_INTLIT: token decimal
+  * Description: tokens for the ast
+  */
+enum a_tokens
+{
+	A_PLUS,
+	A_MINUS,
+	A_STAR,
+	A_SLASH,
+	A_INTLIT
+};
+
+/**
+  * struct ASTnode - AST structure
+  * @op: op code
+  * @left: left side of tree
+  * @right: right side of tree
+  * @intvalue: value of int
+  * Description: defines ast structure
+  */
+struct ASTnode
+{
+	int op;
+	struct ASTnode *left;
+	struct ASTnode *right;
+	int intvalue;
+};
+
 #endif
