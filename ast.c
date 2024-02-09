@@ -2,7 +2,6 @@
 #include "include/data.h"
 #include "include/decl.h"
 
-
 struct ASTnode *mkastnode(int op, struct ASTnode *left,
 			  struct ASTnode *right, int intvalue)
 {

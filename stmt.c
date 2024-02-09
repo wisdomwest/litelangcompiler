@@ -2,6 +2,10 @@
 #include "include/data.h"
 #include "include/decl.h"
 
+/**
+ * statements - Parse the statements
+ * Return: void
+ */
 void statements(void)
 {
 
@@ -12,14 +16,10 @@ void statements(void)
 	{
 
 		match(T_PRINT, "print");
-
-
 		tree = binexpr(0);
 		reg = genAST(tree);
 		genprintint(reg);
 		genfreeregs();
-
-
 		semi();
 		if (Token.token == T_EOF)
 			return;

@@ -2,7 +2,11 @@
 #include "include/data.h"
 #include "include/decl.h"
 
-
+/**
+ * genAST - Generate the assembly code for an AST
+ * @n: AST node
+ * Return: int
+ */
 int genAST(struct ASTnode *n)
 {
 	int leftreg, rightreg;
@@ -30,18 +34,38 @@ int genAST(struct ASTnode *n)
 	}
 }
 
-void genpreamble()
+/**
+ * genpreamble - Generate the preamble
+ * Return: void
+ */
+void genpreamble(void)
 {
 	cgpreamble();
 }
-void genpostamble()
+
+/**
+ * genpostamble - Generate the postamble
+ * Return: void
+ */
+void genpostamble(void)
 {
 	cgpostamble();
 }
-void genfreeregs()
+
+/**
+ * genfreeregs - Free all registers
+ * Return: void
+ */
+void genfreeregs(void)
 {
 	freeall_registers();
 }
+
+/**
+ * genprintint - Generate code to print an integer
+ * @reg: register to print
+ * Return: void
+ */
 void genprintint(int reg)
 {
 	cgprintint(reg);

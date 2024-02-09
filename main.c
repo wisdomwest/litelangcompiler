@@ -5,20 +5,33 @@
 #include "include/decl.h"
 #include <errno.h>
 
-
-static void init()
+/**
+ * init - Initialize the global variables
+ * Return: void
+ */
+void init()
 {
 	Line = 1;
 	Putback = '\n';
 }
 
-
-static void usage(char *prog)
+/**
+ * usage - Print usage message and exit
+ * @prog: program name
+ * Return: void
+ */
+void usage(char *prog)
 {
 	fprintf(stderr, "Usage: %s infile\n", prog);
 	exit(1);
 }
 
+/**
+ * main - Main function
+ * @argc: argument count
+ * @argv: argument vector
+ * Return: int
+ */
 void main(int argc, char *argv[])
 {
 	Infile = fopen(argv[1], "r");

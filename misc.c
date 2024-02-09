@@ -2,6 +2,12 @@
 #include "include/data.h"
 #include "include/decl.h"
 
+/**
+ * match - Ensure the current token is a particular symbol
+ * @t: token type
+ * @what: what to match
+ * Return: void
+ */
 void match(int t, char *what)
 {
 	if (Token.token == t)
@@ -15,6 +21,10 @@ void match(int t, char *what)
 	}
 }
 
+/**
+ * semi - Ensure the current token is a semi-colon
+ * Return: void
+ */
 void semi(void)
 {
 	match(T_SEMI, ";");

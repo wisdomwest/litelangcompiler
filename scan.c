@@ -2,8 +2,13 @@
 #include "include/data.h"
 #include "include/decl.h"
 
-
-static int chrpos(char *s, int c)
+/**
+ * chrpos - Find the position of a character in a string
+ * @s: string
+ * @c: character
+ * Return: int
+ */
+int chrpos(char *s, int c)
 {
 	char *p;
 
@@ -11,8 +16,11 @@ static int chrpos(char *s, int c)
 	return (p ? p - s : -1);
 }
 
-
-static int next(void)
+/**
+ * next - Get the next character from the input
+ * Return: int
+ */
+int next(void)
 {
 	int c;
 
@@ -29,12 +37,21 @@ static int next(void)
 	return (c);
 }
 
-static void putback(int c)
+/**
+ * putback - Put a character back onto the input
+ * @c: character
+ * Return: void
+ */
+void putback(int c)
 {
 	Putback = c;
 }
 
-static int skip(void)
+/**
+ * skip - Skip white space and get the next character
+ * Return: int
+ */
+int skip(void)
 {
 	int c;
 
@@ -46,8 +63,12 @@ static int skip(void)
 	return (c);
 }
 
-
-static int scanint(int c)
+/**
+ * scanint - Scan an integer literal
+ * @c: character
+ * Return: int
+ */
+int scanint(int c)
 {
 	int k, val = 0;
 
@@ -63,8 +84,14 @@ static int scanint(int c)
 	return (val);
 }
 
-
-static int scanident(int c, char *buf, int lim)
+/**
+ * scanident - Scan an identifier
+ * @c: character
+ * @buf: buffer
+ * @lim: limit
+ * Return: int
+ */
+int scanident(int c, char *buf, int lim)
 {
 	int i = 0;
 
@@ -90,8 +117,12 @@ static int scanident(int c, char *buf, int lim)
 	return (i);
 }
 
-
-static int keyword(char *s)
+/**
+ * keyword - Check if a string is a keyword
+ * @s: string
+ * Return: int
+ */
+int keyword(char *s)
 {
 	switch (*s)
 	{
@@ -103,7 +134,11 @@ static int keyword(char *s)
 	return (0);
 }
 
-
+/**
+ * scan - Get the next token from the input
+ * @t: token
+ * Return: int
+ */
 int scan(struct token *t)
 {
 	int c, tokentype;

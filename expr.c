@@ -3,7 +3,7 @@
 #include "include/decl.h"
 
 
-static struct ASTnode *primary(void)
+struct ASTnode *primary(void)
 {
 	struct ASTnode *n;
 
@@ -21,8 +21,12 @@ static struct ASTnode *primary(void)
 }
 
 
-
-static int arithop(int tokentype)
+/**
+ * arithop - Convert token type to AST operation
+ * @tokentype: token type
+ * Return: int
+ */
+int arithop(int tokentype)
 {
 	switch (tokentype)
 	{
@@ -40,11 +44,14 @@ static int arithop(int tokentype)
 	}
 }
 
+int OpPrec[] = { 0, 10, 10, 20, 20, 0 };
 
-static int OpPrec[] = { 0, 10, 10, 20, 20, 0 };
-
-
-static int op_precedence(int tokentype)
+/**
+ * op_precedence - Get the precedence of a token
+ * @tokentype: token type
+ * Return: int
+ */
+int op_precedence(int tokentype)
 {
 	int prec = OpPrec[tokentype];
 

@@ -3,17 +3,23 @@
 #include "include/decl.h"
 
 
-static int freereg[4];
-static char *reglist[4] = { "r8", "r9", "r10", "r11" };
+int freereg[4];
+char *reglist[4] = { "r8", "r9", "r10", "r11" };
 
-
+/**
+ * freeall_registers - Set all registers to be free
+ * Return: void
+*/
 void freeall_registers(void)
 {
 	freereg[0] = freereg[1] = freereg[2] = freereg[3] = 1;
 }
 
-
-static int alloc_register(void)
+/**
+ * alloc_register - Allocate a register
+ * Return: int
+*/
+int alloc_register(void)
 {
 	for (int i = 0; i < 4; i++)
 	{
@@ -27,8 +33,12 @@ static int alloc_register(void)
 	exit(1);
 }
 
-
-static void free_register(int reg)
+/**
+ * free_register - Free a register
+ * @reg: register to free
+ * Return: void
+*/
+void free_register(int reg)
 {
 	if (freereg[reg] != 0)
 	{
@@ -38,8 +48,11 @@ static void free_register(int reg)
 	freereg[reg] = 1;
 }
 
-
-void cgpreamble()
+/**
+ * cgpreamble - Generate the preamble
+ * Return: void
+*/
+void cgpreamble(void)
 {
 	freeall_registers();
 	fputs("\tglobal\tmain\n"
@@ -63,13 +76,20 @@ void cgpreamble()
 	"main:\n" "\tpush\trbp\n" "\tmov	rbp, rsp\n", Outfile);
 }
 
-
+/**
+ * cgpostamble - Generate the postamble
+ * Return: void
+*/
 void cgpostamble()
 {
 	fputs("\tmov	eax, 0\n" "\tpop	rbp\n" "\tret\n", Outfile);
 }
 
-
+/**
+ * cgload - Load a value into a register
+ * @value: value to load
+ * Return: int
+*/
 int cgload(int value)
 {
 
@@ -80,6 +100,12 @@ int cgload(int value)
 	return (r);
 }
 
+/**
+ * cgadd - Add a value to a register
+ * @r1: register to add
+ * @r2: register to add
+ * Return: int
+*/
 int cgadd(int r1, int r2)
 {
 	fprintf(Outfile, "\tadd\t%s, %s\n", reglist[r2], reglist[r1]);
@@ -87,7 +113,12 @@ int cgadd(int r1, int r2)
 	return (r2);
 }
 
-
+/**
+ * cgsub - Subtract a value from a register
+ * @r1: register to subtract
+ * @r2: register to subtract
+ * Return: int
+*/
 int cgsub(int r1, int r2)
 {
 	fprintf(Outfile, "\tsub\t%s, %s\n", reglist[r1], reglist[r2]);
@@ -95,7 +126,12 @@ int cgsub(int r1, int r2)
 	return (r1);
 }
 
-
+/**
+ * cgmul - Multiply a value with a register
+ * @r1: register to multiply
+ * @r2: register to multiply
+ * Return: int
+*/
 int cgmul(int r1, int r2)
 {
 	fprintf(Outfile, "\timul\t%s, %s\n", reglist[r2], reglist[r1]);
@@ -103,7 +139,12 @@ int cgmul(int r1, int r2)
 	return (r2);
 }
 
-
+/**
+ * cgdiv - Divide a value from a register
+ * @r1: register to divide
+ * @r2: register to divide
+ * Return: int
+*/
 int cgdiv(int r1, int r2)
 {
 	fprintf(Outfile, "\tmov\trax, %s\n", reglist[r1]);
@@ -114,6 +155,11 @@ int cgdiv(int r1, int r2)
 	return (r1);
 }
 
+/**
+ * cgprintint - Print an integer
+ * @r: register to print
+ * Return: void
+*/
 void cgprintint(int r)
 {
 	fprintf(Outfile, "\tmov\trdi, %s\n", reglist[r]);
