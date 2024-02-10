@@ -33,14 +33,14 @@ Each statement starts with the keyword `print` and is terminated with a semicolo
 There's a lot of compiler resources out on the Internet. Here are the ones
 I'll be looking at.
 
-# Learning Resources
+### Learning Resources
 
 If you want to start with some books, papers and tools on compilers,
 I'd highly recommend this list:
 
   + [Curated list of awesome resources on Compilers, Interpreters and Runtimes](https://github.com/aalhour/awesome-compilers) by Ahmad Alhour
 
-# Existing Compilers
+### Existing Compilers
 
 While I'm going to build my own compiler, I plan on looking at other compilers:
   + [SubC](http://www.t3x.org/subc/) by Nils M Holm
@@ -62,9 +62,7 @@ install nasm for the asm code.
 
 ## Trying It Out
 
-That's about it for the new and changed code. Let's give the new code
-a whirl. Here is the new input file, `input01`:
-
+The language is very simple, but here try it out:
 ```
 $ make
 $ make test
