@@ -3,68 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Project Name</title>
-    <link rel="stylesheet" href="styles.css"> <!-- You can link to an external CSS file for styling -->
+    <title>Your Compiler Project</title>
+    <!-- Link to Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Link to your custom styles -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <!-- Intro Section -->
-<section id="intro">
-    <img src="cover-image.jpg" alt="Project Cover Image">
-    <h1>Your Project Name</h1>
-    <p>A one-line phrase and/or description of your project</p>
-    <nav>
-        <ul>
-            <li><a href="#section1">Section 1</a></li>
-            <li><a href="#section2">Section 2</a></li>
-            <!-- Add more navigation elements as needed -->
-        </ul>
+<section id="intro" class="bg-dark text-white">
+    <img src="cover-image.jpg" alt="Project Cover Image" class="img-fluid">
+    <h1>Your Compiler Project</h1>
+    <p class="lead">A one-line phrase and/or description of your compiler</p>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="#section1">Features</a></li>
+                <li class="nav-item"><a class="nav-link" href="#section2">About</a></li>
+            </ul>
+        </div>
     </nav>
-    <a href="deployed-app-link" class="btn">Go to Project</a>
+    <a href="deployed-app-link" class="btn btn-primary">Go to Compiler</a>
 </section>
 
 <!-- Feature Section -->
-<section id="section1">
-    <h2>Feature Section</h2>
+<section id="section1" class="bg-light text-dark">
+    <h2 class="text-dark">Feature Section</h2>
 
     <!-- Feature 1 -->
     <div class="feature">
-        <img src="feature1-image.jpg" alt="Feature 1 Image">
+        <img src="feature1-image.jpg" alt="Feature 1 Image" class="img-fluid">
         <h3>Feature 1 Name</h3>
         <p>Description of Feature 1</p>
     </div>
 
     <!-- Feature 2 -->
     <div class="feature">
-        <img src="feature2-image.jpg" alt="Feature 2 Image">
+        <img src="feature2-image.jpg" alt="Feature 2 Image" class="img-fluid">
         <h3>Feature 2 Name</h3>
         <p>Description of Feature 2</p>
     </div>
 
     <!-- Feature 3 -->
     <div class="feature">
-        <img src="feature3-image.jpg" alt="Feature 3 Image">
+        <img src="feature3-image.jpg" alt="Feature 3 Image" class="img-fluid">
         <h3>Feature 3 Name</h3>
         <p>Description of Feature 3</p>
     </div>
 </section>
 
 <!-- About Section -->
-<section id="section2">
-    <h2>About Section</h2>
-    <p>Description of what inspired the project. Include a personal story, timeline, and mention it's a Portfolio Project for Holberton School with a link.</p>
+<section id="section2" class="bg-dark text-white">
+    <h2 class="text-white">About Section</h2>
+    <p>Description of what inspired the compiler project. Include a personal story, timeline, and mention it's a Portfolio Project for Holberton School with a link.</p>
 
     <!-- Team Members -->
     <div class="team-members">
-        <a href="linkedin-link" target="_blank">LinkedIn</a>
-        <a href="github-link" target="_blank">GitHub</a>
-        <a href="twitter-link" target="_blank">Twitter</a>
+        <a href="linkedin-link" target="_blank" class="btn btn-light">LinkedIn</a>
+        <a href="github-link" target="_blank" class="btn btn-light">GitHub</a>
+        <a href="twitter-link" target="_blank" class="btn btn-light">Twitter</a>
         <!-- Add links for each team member -->
     </div>
 
     <!-- GitHub Repository Link -->
-    <a href="github-repo-link" class="btn">GitHub Repository</a>
+    <a href="github-repo-link" class="btn btn-primary">GitHub Repository</a>
 </section>
+
+<!-- Link to Bootstrap JS and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
 </html>
