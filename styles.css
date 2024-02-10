@@ -1,0 +1,83 @@
+/* Reset some default browser styles */
+body, h1, h2, h3, p, ul {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+/* Intro Section Styles */
+#intro {
+    text-align: center;
+    padding: 20px;
+}
+
+#intro img {
+    max-width: 100%;
+    height: auto;
+}
+
+#intro h1 {
+    margin: 20px 0;
+}
+
+#intro p {
+    margin-bottom: 20px;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+/* Feature Section Styles */
+#section1 {
+    text-align: center;
+    padding: 20px;
+}
+
+.feature {
+    margin-bottom: 40px;
+}
+
+.feature img {
+    max-width: 100%;
+    height: auto;
+}
+
+.feature h3 {
+    margin-top: 10px;
+}
+
+/* About Section Styles */
+#section2 {
+    text-align: center;
+    padding: 20px;
+}
+
+.team-members a {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+/* Button Styles */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #007BFF;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
