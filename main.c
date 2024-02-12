@@ -32,7 +32,7 @@ void usage(char *prog)
  * @argv: argument vector
  * Return: int
  */
-void main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
 	Infile = fopen(argv[1], "r");
 	Outfile = fopen("out.s", "w");

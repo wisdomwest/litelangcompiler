@@ -181,7 +181,7 @@ int scan(struct token *t)
 				scanident(c, Text, TEXTLEN);
 
 
-				if (tokentype = keyword(Text))
+				if ((tokentype = keyword(Text)))
 				{
 					t->token = tokentype;
 					break;

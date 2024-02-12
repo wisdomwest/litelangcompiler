@@ -21,7 +21,9 @@ void freeall_registers(void)
 */
 int alloc_register(void)
 {
-	for (int i = 0; i < 4; i++)
+	int i;
+
+	for (i = 0; i < 4; i++)
 	{
 		if (freereg[i])
 		{

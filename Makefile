@@ -1,5 +1,5 @@
 llc: cgn.c expr.c gen.c main.c misc.c scan.c stmt.c ast.c
-	cc -o llc -g cgn.c expr.c gen.c main.c misc.c scan.c stmt.c ast.c
+	gcc -Wall -pedantic -Werror -Wextra -std=gnu89 cgn.c expr.c gen.c main.c misc.c scan.c stmt.c ast.c -o llc
 
 clean:
 	rm -f llc *.o *.s out
